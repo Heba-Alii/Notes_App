@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_homeFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addNewNotes"
+            app:destination="@id/addNewNotes" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -61,4 +64,9 @@
         android:name="com.example.myapplication.FavoriteFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorite" />
+    <activity
+        android:id="@+id/addNewNotes"
+        android:name="com.example.myapplication.AddNewNotes"
+        android:label="activity_add_new_notes"
+        tools:layout="@layout/activity_add_new_notes"/>
 </navigation>

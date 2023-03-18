@@ -38,8 +38,7 @@ public class HomeFragment extends Fragment {
         binding.floatActionNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AddNewNotes.class);
-                requireActivity().startActivity(intent);
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_homeFragment_to_addNewNotes);
 
             }
         });

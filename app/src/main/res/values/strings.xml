@@ -12,4 +12,5 @@
     <string name="favorites">Favorites</string>
     <string name="edit_user_data">Edit User Data</string>
     <string name="remove_account">Remove Account</string>
+    <string name="write_your_description_about_this_course">Write Your Description about this course</string>
 </resources>
