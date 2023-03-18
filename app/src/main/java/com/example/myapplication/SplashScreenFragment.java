@@ -29,18 +29,23 @@ public class SplashScreenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Thread background = new Thread() {
+        Thread splash = new Thread() {
             public void run() {
                 try {
                     sleep(3 * 1000);
-                    Navigation.findNavController(binding.getRoot()).navigate(R.id.action_splashScreenFragment_to_registerScreenFragment);
+                    if (!AppSharedPreference.isUserLogin(getActivity())) {
+                        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_splashScreenFragment_to_registerScreenFragment);
+                    } else {
+                        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_splashScreenFragment_to_homeFragment);
+                    }
                 } catch (Exception e) {
                 }
             }
         };
-        background.start();
+        splash.start();
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.GONE);
+
     }
 
 }
