@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_to_notes_app">أهلا بك في تطبيق التذكرة</string>
+    <string name="name">الإسم</string>
+    <string name="phone">رقم الموبايل</string>
+    <string name="mail">البريد الالكتروني</string>
+    <string name="register">تسجيل الدخول</string>
+
+</resources>
