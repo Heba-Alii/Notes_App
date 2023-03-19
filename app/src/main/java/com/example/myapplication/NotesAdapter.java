@@ -13,6 +13,7 @@ import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
     private List<NotesEntity> notes;
+    boolean isChecked;
 
     public NotesAdapter(List<NotesEntity> notes) {
         this.notes = notes;
@@ -31,6 +32,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         NotesEntity notesEntity = notes.get(position);
         holder.course_name.setText(notesEntity.getCourseName());
         holder.course_desc.setText(notesEntity.getCourseDesc());
+        holder.favorite_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isChecked) {
+                    holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
+                } else {
+                    holder.favorite_img.setImageResource(R.drawable.baseline_favorite_border_24);
+
+                }
+                isChecked = !isChecked;
+            }
+        });
     }
 
     @Override
