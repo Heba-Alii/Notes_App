@@ -70,5 +70,11 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+        binding.editUserDataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_profileFragment_to_editScreenFragment);
+            }
+        });
     }
 }

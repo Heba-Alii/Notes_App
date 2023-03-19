@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.myapplication.databinding.FragmentHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -35,6 +37,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
+        getNotes();
         binding.floatActionNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,5 +45,24 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    private void getNotes() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
+                List<NotesEntity> notesList = notesBuilder.notesDao().getAllNotes();
+                NotesAdapter notesAdapter = new NotesAdapter(notesList);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.recycler.setLayoutManager(new
+                                LinearLayoutManager(getActivity()));
+                        binding.recycler.setAdapter(notesAdapter);
+                    }
+                });
+            }
+        }).start();
     }
 }

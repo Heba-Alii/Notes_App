@@ -42,8 +42,6 @@ public class AddNewNotes extends AppCompatActivity implements AdapterView.OnItem
                 NotesEntity notesEntity = new NotesEntity(courseName, userDesc, false);
                 if (desc(userDesc)) {
                     saveData(notesEntity);
-                    // Intent intent = new Intent(AddNewNotes.this, MainActivity.class);
-                    //  startActivity(intent);
                     NavController navController = Navigation.findNavController(AddNewNotes.this, R.id.fragmentContainerView);
                     navController.navigate(R.id.homeFragment);
 
