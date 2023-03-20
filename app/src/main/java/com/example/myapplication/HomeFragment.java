@@ -23,6 +23,8 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
+    FavInterface favInterface;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,8 +43,7 @@ public class HomeFragment extends Fragment {
         binding.floatActionNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_homeFragment_to_addNewNotes);
-
+                getActivity().startActivity(new Intent(getActivity(), AddNewNotes.class));
             }
         });
     }
@@ -53,7 +54,7 @@ public class HomeFragment extends Fragment {
             public void run() {
                 NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
                 List<NotesEntity> notesList = notesBuilder.notesDao().getAllNotes();
-                NotesAdapter notesAdapter = new NotesAdapter(notesList);
+                NotesAdapter notesAdapter = new NotesAdapter(notesList,favInterface);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -65,4 +66,29 @@ public class HomeFragment extends Fragment {
             }
         }).start();
     }
+//    private void update() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
+//                List<NotesEntity> notesList = notesBuilder.notesDao().update();
+//                NotesAdapter notesAdapter = new NotesAdapter(notesList,favInterface);
+//                getActivity().runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        binding.recycler.setLayoutManager(new
+//                                LinearLayoutManager(getActivity()));
+//                        binding.recycler.setAdapter(notesAdapter);
+//                    }
+//                });
+//            }
+//        }).start();
+//    }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        NotesBuilder notesBuilder=NotesBuilder.getInstance(getContext());
+//        NotesEntity notesEntity=notesBuilder.notesDao().update(favInterface,getId());
+//    }
 }

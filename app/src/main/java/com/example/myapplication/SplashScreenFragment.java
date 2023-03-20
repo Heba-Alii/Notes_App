@@ -43,9 +43,8 @@ public class SplashScreenFragment extends Fragment {
             }
         };
         splash.start();
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setVisibility(View.GONE);
-
+       BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+       bottomNavigationView.setVisibility(View.GONE);
     }
 
 }

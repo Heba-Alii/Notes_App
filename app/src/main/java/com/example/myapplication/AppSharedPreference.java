@@ -40,4 +40,12 @@ public class AppSharedPreference {
         getSharedPreference(context).edit().remove("phone").apply();
 
     }
+//    public static void updateToSharedPref(Context context, String name, String mail, String phone){
+//        String userName=name;
+//        String userMail=mail;
+//        String userPhone=phone;
+//        getSharedPreference(context).edit().putString("name",userName);
+//        getSharedPreference(context).edit().putString("mail",userMail);
+//        getSharedPreference(context).edit().putString("phone",userPhone);
+//    }
 }

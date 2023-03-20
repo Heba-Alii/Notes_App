@@ -61,12 +61,16 @@ public class ProfileFragment extends Fragment {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+
                                 AppSharedPreference.deleteDataFromSharedPref(getActivity());
-                                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_profileFragment_to_registerScreenFragment);
+                                //NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
+                                //notesBuilder.notesDao().deleteAllNotes();
+                                getActivity().finish();
                             }
                         })
                         .setNegativeButton("No", null)
                         .setIcon(R.drawable.baseline_add_alert_24).show();
+
 
             }
         });

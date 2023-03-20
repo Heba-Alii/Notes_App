@@ -42,8 +42,7 @@ public class AddNewNotes extends AppCompatActivity implements AdapterView.OnItem
                 NotesEntity notesEntity = new NotesEntity(courseName, userDesc, false);
                 if (desc(userDesc)) {
                     saveData(notesEntity);
-                    NavController navController = Navigation.findNavController(AddNewNotes.this, R.id.fragmentContainerView);
-                    navController.navigate(R.id.homeFragment);
+                    Toast.makeText(AddNewNotes.this, "Your Data is added success", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(AddNewNotes.this, "Please Enter Yoyr Description", Toast.LENGTH_SHORT).show();

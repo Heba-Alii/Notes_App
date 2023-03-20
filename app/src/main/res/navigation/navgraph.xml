@@ -12,9 +12,13 @@
         tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_registerScreenFragment"
+            app:popUpTo="@id/registerScreenFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/registerScreenFragment" />
         <action
             android:id="@+id/action_splashScreenFragment_to_homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
@@ -24,23 +28,10 @@
         tools:layout="@layout/fragment_register_screen">
         <action
             android:id="@+id/action_registerScreenFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
 
-    </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.myapplication.HomeFragment"
-        android:label="@string/home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_addNewNotes"
-            app:destination="@id/addNewNotes" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -52,21 +43,36 @@
             app:destination="@id/editScreenFragment" />
         <action
             android:id="@+id/action_profileFragment_to_registerScreenFragment"
-            app:destination="@id/registerScreenFragment" />
+            app:destination="@id/registerScreenFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"
+
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.myapplication.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:popUpTo="@id/favoriteFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/editScreenFragment"
         android:name="com.example.myapplication.EditScreenFragment"
         android:label="fragment_edit_screen"
-        tools:layout="@layout/fragment_edit_screen" />
+        tools:layout="@layout/fragment_edit_screen" >
+        <action
+            android:id="@+id/action_editScreenFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.myapplication.FavoriteFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorite" />
-    <activity
-        android:id="@+id/addNewNotes"
-        android:name="com.example.myapplication.AddNewNotes"
-        android:label="activity_add_new_notes"
-        tools:layout="@layout/activity_add_new_notes"/>
 </navigation>

@@ -13,11 +13,14 @@ import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
     private List<NotesEntity> notes;
+    private FavInterface favInterface;
     boolean isChecked;
-
-    public NotesAdapter(List<NotesEntity> notes) {
+int isFavorite=0;
+    public NotesAdapter(List<NotesEntity> notes, FavInterface favInterface) {
         this.notes = notes;
+        this.favInterface = favInterface;
     }
+
 
     @NonNull
     @Override
@@ -37,11 +40,28 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             public void onClick(View view) {
                 if (isChecked) {
                     holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
+
+                 //   favInterface.isFavorite(notes);
+                    notes.get(holder.getAdapterPosition());
+
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                            int id = (int) getItemId(position);
+//                            NotesBuilder notesBuilder = NotesBuilder.getInstance(view.getContext());
+//                            notesBuilder.notesDao().update(isChecked, id);
+//
+//                        }
+//                    });
+
+
                 } else {
                     holder.favorite_img.setImageResource(R.drawable.baseline_favorite_border_24);
 
                 }
                 isChecked = !isChecked;
+
             }
         });
     }
