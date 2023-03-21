@@ -17,7 +17,7 @@ import com.example.myapplication.databinding.FragmentFavoriteBinding;
 import java.util.List;
 
 
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment implements FavInterface {
 
     FragmentFavoriteBinding binding;
 
@@ -50,6 +50,11 @@ public class FavoriteFragment extends Fragment {
                 });
             }
         }).start();
+
+    }
+
+    @Override
+    public void isFavorite(NotesEntity notesEntities) {
 
     }
 }

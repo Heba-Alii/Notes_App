@@ -40,7 +40,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 if (isChecked) {
-                //   isChecked= notesEntity.isFavorite();
+                    //   isChecked= notesEntity.isFavorite();
                     holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
 
 
@@ -49,9 +49,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-
                             int id = (int) getItemId(position);
-                            favInterface.isFavorite(notes);
+                            favInterface.isFavorite(notesEntity);
                             NotesBuilder notesBuilder = NotesBuilder.getInstance(view.getContext());
                             notesBuilder.notesDao().update(isChecked, id);
 

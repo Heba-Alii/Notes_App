@@ -3,5 +3,5 @@ package com.example.myapplication;
 import java.util.List;
 
 public interface FavInterface {
-    void isFavorite(List<NotesEntity> notesEntities);
+    void isFavorite(NotesEntity notesEntities);
 }
