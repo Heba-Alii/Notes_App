@@ -15,7 +15,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     private List<NotesEntity> notes;
     private FavInterface favInterface;
     boolean isChecked;
-int isFavorite=0;
+    int isFavorite = 0;
+
     public NotesAdapter(List<NotesEntity> notes, FavInterface favInterface) {
         this.notes = notes;
         this.favInterface = favInterface;
@@ -39,21 +40,23 @@ int isFavorite=0;
             @Override
             public void onClick(View view) {
                 if (isChecked) {
+                //   isChecked= notesEntity.isFavorite();
                     holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
 
-                 //   favInterface.isFavorite(notes);
-                    notes.get(holder.getAdapterPosition());
 
-//                    new Thread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//
-//                            int id = (int) getItemId(position);
-//                            NotesBuilder notesBuilder = NotesBuilder.getInstance(view.getContext());
-//                            notesBuilder.notesDao().update(isChecked, id);
-//
-//                        }
-//                    });
+                    //  notes.get(holder.getAdapterPosition());
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            int id = (int) getItemId(position);
+                            favInterface.isFavorite(notes);
+                            NotesBuilder notesBuilder = NotesBuilder.getInstance(view.getContext());
+                            notesBuilder.notesDao().update(isChecked, id);
+
+                        }
+                    });
 
 
                 } else {
