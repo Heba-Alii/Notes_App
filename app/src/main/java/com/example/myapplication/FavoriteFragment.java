@@ -8,19 +8,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication.databinding.FragmentFavoriteBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class FavoriteFragment extends Fragment implements FavInterface {
+public class FavoriteFragment extends Fragment {
 
     FragmentFavoriteBinding binding;
-
+    List<NotesEntity> notesEntityList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,23 +40,17 @@ public class FavoriteFragment extends Fragment implements FavInterface {
             @Override
             public void run() {
                 NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
-                List<NotesEntity> notesEntities = notesBuilder.notesDao().getAllFavoriteItems();
-                FavoritesAdapter favoritesAdapter = new FavoritesAdapter(notesEntities);
+                notesEntityList = notesBuilder.notesDao().getAllFavoriteItems();
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        FavoritesAdapter favoritesAdapter = new FavoritesAdapter(notesEntityList);
                         binding.favRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-
                         binding.favRecycler.setAdapter(favoritesAdapter);
                     }
                 });
             }
         }).start();
-
     }
 
-    @Override
-    public void isFavorite(NotesEntity notesEntities) {
-
-    }
 }

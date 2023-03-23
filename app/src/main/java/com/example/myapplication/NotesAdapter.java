@@ -14,8 +14,6 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
     private List<NotesEntity> notes;
     private FavInterface favInterface;
-    boolean isChecked;
-    int isFavorite = 0;
 
     public NotesAdapter(List<NotesEntity> notes, FavInterface favInterface) {
         this.notes = notes;
@@ -33,37 +31,15 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         NotesEntity notesEntity = notes.get(position);
         holder.course_name.setText(notesEntity.getCourseName());
         holder.course_desc.setText(notesEntity.getCourseDesc());
         holder.favorite_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isChecked) {
-                    //   isChecked= notesEntity.isFavorite();
-                    holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
-
-
-                    //  notes.get(holder.getAdapterPosition());
-
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            int id = (int) getItemId(position);
-                            favInterface.isFavorite(notesEntity);
-                            NotesBuilder notesBuilder = NotesBuilder.getInstance(view.getContext());
-                            notesBuilder.notesDao().update(isChecked, id);
-
-                        }
-                    });
-
-
-                } else {
-                    holder.favorite_img.setImageResource(R.drawable.baseline_favorite_border_24);
-
-                }
-                isChecked = !isChecked;
-
+                holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
+                favInterface.isFavorite(notesEntity);
             }
         });
     }
