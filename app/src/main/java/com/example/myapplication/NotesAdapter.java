@@ -36,16 +36,26 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         NotesEntity notesEntity = notes.get(position);
         holder.course_name.setText(notesEntity.getCourseName());
         holder.course_desc.setText(notesEntity.getCourseDesc());
-        holder.favorite_img.setImageResource(R.drawable.baseline_favorite_border_24);
+       if (notesEntity.isFavorite()==true){
+           holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
+
+       }else {
+           holder.favorite_img.setImageResource(R.drawable.baseline_favorite_border_24);
+
+       }
+
         holder.favorite_img.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                favInterface.isFavorite(notesEntity);
-                holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
 
+                holder.favorite_img.setImageResource(R.drawable.baseline_favorite_24);
+                favInterface.isFavorite(notesEntity);
             }
+
+
         });
+
     }
 
     @Override

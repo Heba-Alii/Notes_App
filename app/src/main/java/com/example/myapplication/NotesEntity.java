@@ -12,6 +12,7 @@ public class NotesEntity {
     private boolean isFavorite;
 
 
+
     public NotesEntity(String courseName, String courseDesc, boolean isFavorite) {
         this.courseName = courseName;
         this.courseDesc = courseDesc;

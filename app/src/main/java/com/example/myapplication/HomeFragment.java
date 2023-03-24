@@ -28,7 +28,6 @@ public class HomeFragment extends Fragment implements FavInterface {
     FragmentHomeBinding binding;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,45 +67,28 @@ public class HomeFragment extends Fragment implements FavInterface {
                 });
             }
         }).start();
+
     }
 
     @Override
     public void isFavorite(NotesEntity notesEntities) {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
                 notesEntities.setFavorite(true);
                 notesBuilder.notesDao().addNotes(notesEntities);
-                Log.d("TAG", "run: " + notesEntities);
+
 
             }
         }).start();
-
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
-
-                List<NotesEntity> notesList = notesBuilder.notesDao().getAllNotes();
-
-                NotesAdapter notesAdapter = new NotesAdapter(notesList, HomeFragment.this);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        binding.recycler.setAdapter(notesAdapter);
-                    }
-                });
-            }
-        }).start();
-
+        getNotes();
     }
 }
