@@ -48,5 +48,12 @@ public class EditScreenFragment extends Fragment {
         } else {
             binding.phoneEt.setText(phone);
         }
+        binding.editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppSharedPreference.updateSharedPreference(getActivity(), binding.nameEt.getText().toString(), binding.mailEt.getText().toString(), binding.phoneEt.getText().toString());
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.action_editScreenFragment_to_profileFragment);
+            }
+        });
     }
 }
