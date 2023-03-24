@@ -34,10 +34,8 @@ public class AppSharedPreference {
         return getSharedPreference(context).getString("phone", "");
 
     }
-    public static void deleteDataFromSharedPref(Context context){
-//        getSharedPreference(context).edit().remove("name").apply();
-//        getSharedPreference(context).edit().remove("mail").apply();
-//        getSharedPreference(context).edit().remove("phone").apply();
+
+    public static void deleteDataFromSharedPref(Context context) {
         getSharedPreference(context).edit().clear().commit();
 
     }

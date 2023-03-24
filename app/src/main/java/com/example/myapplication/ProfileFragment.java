@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +17,15 @@ import android.widget.Toast;
 
 import com.example.myapplication.databinding.FragmentProfileBinding;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
+    HomeFragment homeFragment;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,9 +70,24 @@ public class ProfileFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 AppSharedPreference.deleteDataFromSharedPref(getActivity());
-                                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
-                                notesBuilder.notesDao().deleteAllNotes();
-                              requireActivity().finish();
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
+                                        notesBuilder.notesDao().deleteAllNotes();
+                                        List<NotesEntity> notesEntities = new ArrayList<>();
+                                        NotesAdapter notesAdapter = new NotesAdapter(notesEntities, (FavInterface) ProfileFragment.this);
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                homeFragment.binding.recycler.setLayoutManager(new
+                                                        LinearLayoutManager(getActivity()));
+                                                homeFragment.binding.recycler.setAdapter(notesAdapter);
+                                            }
+                                        });
+                                    }
+                                }).start();
+                                requireActivity().finish();
                             }
 
                         })

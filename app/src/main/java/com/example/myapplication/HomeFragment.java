@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment implements FavInterface {
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
         getNotes();
+
         binding.floatActionNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +70,8 @@ public class HomeFragment extends Fragment implements FavInterface {
         }).start();
 
     }
+
+
 
     @Override
     public void isFavorite(NotesEntity notesEntities) {
