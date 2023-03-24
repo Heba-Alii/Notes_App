@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.databinding.FragmentProfileBinding;
 
+import java.util.Objects;
+
 
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
@@ -63,10 +65,11 @@ public class ProfileFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 AppSharedPreference.deleteDataFromSharedPref(getActivity());
-                                //NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
-                                //notesBuilder.notesDao().deleteAllNotes();
-                                getActivity().finish();
+                                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
+                                notesBuilder.notesDao().deleteAllNotes();
+                              requireActivity().finish();
                             }
+
                         })
                         .setNegativeButton("No", null)
                         .setIcon(R.drawable.baseline_add_alert_24).show();

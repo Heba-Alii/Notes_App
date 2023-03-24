@@ -35,17 +35,11 @@ public class AppSharedPreference {
 
     }
     public static void deleteDataFromSharedPref(Context context){
-        getSharedPreference(context).edit().remove("name").apply();
-        getSharedPreference(context).edit().remove("mail").apply();
-        getSharedPreference(context).edit().remove("phone").apply();
+//        getSharedPreference(context).edit().remove("name").apply();
+//        getSharedPreference(context).edit().remove("mail").apply();
+//        getSharedPreference(context).edit().remove("phone").apply();
+        getSharedPreference(context).edit().clear().commit();
 
     }
-//    public static void updateToSharedPref(Context context, String name, String mail, String phone){
-//        String userName=name;
-//        String userMail=mail;
-//        String userPhone=phone;
-//        getSharedPreference(context).edit().putString("name",userName);
-//        getSharedPreference(context).edit().putString("mail",userMail);
-//        getSharedPreference(context).edit().putString("phone",userPhone);
-//    }
+
 }
