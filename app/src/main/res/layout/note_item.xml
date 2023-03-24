@@ -20,7 +20,7 @@
             android:layout_height="100dp"
             android:layout_margin="20dp"
             android:padding="10dp"
-            android:src="@drawable/baseline_favorite_border_24"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

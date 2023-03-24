@@ -26,7 +26,7 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment implements FavInterface {
     FragmentHomeBinding binding;
-    NotesEntity notesEntityList;
+
 
 
     @Override
@@ -86,19 +86,27 @@ public class HomeFragment extends Fragment implements FavInterface {
 
     }
 
-  //  @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
-//                notesBuilder.notesDao().update(, notesEntityList.getId());
-//                Log.d("TAG", "run: " + notesEntityList);
-//
-//            }
-//        }).start();
-//
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
+
+                List<NotesEntity> notesList = notesBuilder.notesDao().getAllNotes();
+
+                NotesAdapter notesAdapter = new NotesAdapter(notesList, HomeFragment.this);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        binding.recycler.setAdapter(notesAdapter);
+                    }
+                });
+            }
+        }).start();
+
+    }
 }

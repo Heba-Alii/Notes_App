@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,13 +34,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
         NotesEntity notes = notesEntities.get(position);
         holder.course_name.setText(notes.getCourseName());
         holder.course_desc.setText(notes.getCourseDesc());
-
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.imageView.setImageResource(R.drawable.baseline_favorite_24);
-            }
-        });
+        holder.imageView.setImageResource(R.drawable.baseline_favorite_24);
 
 
     }
