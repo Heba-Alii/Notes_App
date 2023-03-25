@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <ImageView
             android:id="@+id/user_image"
             android:layout_width="150dp"
@@ -91,6 +90,4 @@
             app:layout_constraintStart_toStartOf="@+id/edit_user_data_btn"
             app:layout_constraintTop_toBottomOf="@+id/edit_user_data_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>

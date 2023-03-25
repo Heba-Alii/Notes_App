@@ -24,8 +24,6 @@ import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
-    HomeFragment homeFragment;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,13 +32,11 @@ public class ProfileFragment extends Fragment {
         View profileFragment = inflater.inflate(R.layout.fragment_profile, container, false);
         binding = FragmentProfileBinding.bind(profileFragment);
         return binding.getRoot();
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         String name = AppSharedPreference.getName(getActivity());
         if (name.isEmpty()) {
             Toast.makeText(getActivity(), "empty name", Toast.LENGTH_SHORT).show();
@@ -68,33 +64,14 @@ public class ProfileFragment extends Fragment {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                getActivity().finish();
                                 AppSharedPreference.deleteDataFromSharedPref(getActivity());
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
-                                        notesBuilder.notesDao().deleteAllNotes();
-                                        List<NotesEntity> notesEntities = new ArrayList<>();
-                                        NotesAdapter notesAdapter = new NotesAdapter(notesEntities, (FavInterface) ProfileFragment.this);
-                                        getActivity().runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                homeFragment.binding.recycler.setLayoutManager(new
-                                                        LinearLayoutManager(getActivity()));
-                                                homeFragment.binding.recycler.setAdapter(notesAdapter);
-                                            }
-                                        });
-                                    }
-                                }).start();
-                                requireActivity().finish();
-                            }
+                                delete();
 
+                            }
                         })
                         .setNegativeButton("No", null)
                         .setIcon(R.drawable.baseline_add_alert_24).show();
-
-
             }
         });
         binding.editUserDataBtn.setOnClickListener(new View.OnClickListener() {
@@ -103,5 +80,16 @@ public class ProfileFragment extends Fragment {
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.action_profileFragment_to_editScreenFragment);
             }
         });
+
+    }
+
+    public void delete() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NotesBuilder notesBuilder = NotesBuilder.getInstance(getContext());
+                notesBuilder.notesDao().deleteAllNotes();
+            }
+        }).start();
     }
 }

@@ -21,6 +21,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         this.favInterface = favInterface;
     }
 
+    public NotesAdapter(List<NotesEntity> notes) {
+        this.notes = notes;
+    }
 
     @NonNull
     @Override

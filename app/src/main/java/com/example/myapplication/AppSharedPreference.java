@@ -38,7 +38,7 @@ public class AppSharedPreference {
     }
 
     public static void deleteDataFromSharedPref(Context context) {
-        getSharedPreference(context).edit().clear().commit();
+        getSharedPreference(context).edit().clear().apply();
 
     }
 

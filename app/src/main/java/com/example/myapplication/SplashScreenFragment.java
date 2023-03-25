@@ -34,6 +34,7 @@ public class SplashScreenFragment extends Fragment {
                 try {
                     sleep(3 * 1000);
                     if (!AppSharedPreference.isUserLogin(getActivity())) {
+
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_splashScreenFragment_to_registerScreenFragment);
                     } else {
                         Navigation.findNavController(binding.getRoot()).navigate(R.id.action_splashScreenFragment_to_homeFragment);
