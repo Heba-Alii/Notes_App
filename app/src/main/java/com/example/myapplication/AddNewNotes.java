@@ -43,6 +43,7 @@ public class AddNewNotes extends AppCompatActivity implements AdapterView.OnItem
                 if (desc(userDesc)) {
                     saveData(notesEntity);
                     Toast.makeText(AddNewNotes.this, "Your Data is added success", Toast.LENGTH_SHORT).show();
+                    binding.descEt.setText("");
 
                 } else {
                     Toast.makeText(AddNewNotes.this, "Please Enter Yoyr Description", Toast.LENGTH_SHORT).show();
